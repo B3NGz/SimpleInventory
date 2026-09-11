@@ -18,6 +18,7 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<ItemSupplier> ItemSuppliers => Set<ItemSupplier>();
 
+    public DbSet<Customer> Customers => Set<Customer>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -242,6 +243,26 @@ public class ApplicationDbContext : DbContext
 
             entity.HasIndex(e => new { e.ItemId, e.SupplierId })
                 .IsUnique();
+        });
+
+        // Customer mapping
+        modelBuilder.Entity<Customer>(entity =>
+        {
+            entity.ToTable("customers");
+
+            entity.HasKey(e => e.CustomerId);
+
+            entity.Property(e => e.CustomerId)
+                .HasColumnName("customer_id");
+
+            entity.Property(e => e.Name)
+                .HasColumnName("name")
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(e => e.Address)
+                .HasColumnName("address")
+                .HasMaxLength(55);
         });
     }
 }
