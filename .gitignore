@@ -37,4 +37,5 @@ packages/
 Thumbs.db
 
 # Local configuration / secrets
+appsettings.json
 appsettings.Local.json
