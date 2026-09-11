@@ -1,0 +1,40 @@
+﻿# Build output
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+*.sln.iml
+
+# Visual Studio Code
+.vscode/
+
+# User-specific files
+*.user
+*.rsuser
+
+# Test results
+TestResults/
+*.trx
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local configuration / secrets
+appsettings.Local.json
