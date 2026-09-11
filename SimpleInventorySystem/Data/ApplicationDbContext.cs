@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿//ApplicationDbContext.cs file 
+using Microsoft.EntityFrameworkCore;
 using SimpleInventorySystem.Model;
 using SimpleInventorySystem.Model.Entities;
 
