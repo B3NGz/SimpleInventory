@@ -2,7 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using SimpleInventorySystem.Data;
 using SimpleInventorySystem.Service;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Database
@@ -17,6 +16,20 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllers();
+
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("FrontendPolicy", policy =>
+    {
+        policy
+            .WithOrigins(
+                "http://localhost:5500"
+            )
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 builder.Services.AddScoped<AuditLogService>();
 
@@ -34,6 +47,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("FrontendPolicy");
 
 app.UseAuthorization();
 
