@@ -4,11 +4,13 @@ using SimpleInventorySystem.Data;
 using SimpleInventorySystem.Model.DTO;
 using SimpleInventorySystem.Model.Entities;
 using SimpleInventorySystem.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SimpleInventorySystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ItemsController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

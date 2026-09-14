@@ -1,14 +1,17 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SimpleInventorySystem.Data;
 using SimpleInventorySystem.Model.DTO;
 using SimpleInventorySystem.Model.Entities;
 using SimpleInventorySystem.Service;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SimpleInventorySystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class StockTransactionsController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

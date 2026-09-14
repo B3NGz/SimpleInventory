@@ -2,11 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using SimpleInventorySystem.Data;
 using SimpleInventorySystem.Model.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SimpleInventorySystem.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class ReportsController : ControllerBase
 {
     private readonly ApplicationDbContext _context;

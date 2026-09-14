@@ -20,6 +20,8 @@ public class ApplicationDbContext : DbContext
     public DbSet<ItemSupplier> ItemSuppliers => Set<ItemSupplier>();
 
     public DbSet<Customer> Customers => Set<Customer>();
+
+    public DbSet<User> Users => Set<User>();
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -264,6 +266,52 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.Address)
                 .HasColumnName("address")
                 .HasMaxLength(55);
+        });
+
+        //User
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.ToTable("users");
+
+            entity.HasKey(e => e.UserId);
+
+            entity.Property(e => e.UserId)
+                .HasColumnName("user_id");
+
+            entity.Property(e => e.FullName)
+                .HasColumnName("full_name")
+                .HasMaxLength(150)
+                .IsRequired();
+
+            entity.Property(e => e.Email)
+                .HasColumnName("email")
+                .HasMaxLength(150)
+                .IsRequired();
+
+            entity.Property(e => e.GoogleSubjectId)
+                .HasColumnName("google_subject_id")
+                .HasMaxLength(255);
+
+            entity.Property(e => e.Role)
+                .HasColumnName("role")
+                .HasMaxLength(50)
+                .IsRequired();
+
+            entity.Property(e => e.IsActive)
+                .HasColumnName("is_active")
+                .IsRequired();
+
+            entity.Property(e => e.CreatedAt)
+                .HasColumnName("created_at");
+
+            entity.Property(e => e.UpdatedAt)
+                .HasColumnName("updated_at");
+
+            entity.HasIndex(e => e.Email)
+                .IsUnique();
+
+            entity.HasIndex(e => e.GoogleSubjectId)
+                .IsUnique();
         });
     }
 }
